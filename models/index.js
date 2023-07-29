@@ -3,9 +3,11 @@
 import fs from "fs";
 import path from "path";
 import { Sequelize, Model } from "sequelize";
+import * as pg from "pg";
+import configs from "config/sequelize";
+
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-import configs from "config/sequelize";
 const config = configs[env];
 
 /* Custom handler for reading current working directory */
@@ -17,14 +19,15 @@ console.log(Model);
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(process.env[config.use_env_variable], {
+    ...config,
+    dialectModule: pg,
+  });
 } else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  sequelize = new Sequelize(config.database, config.username, config.password, {
+    ...config,
+    dialectModule: pg,
+  });
 }
 
 const db = {};
