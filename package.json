@@ -2,8 +2,11 @@
   "name": "momento-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^16.14.2"
+  },
   "scripts": {
-    "dev": "next dev --port 80",
+    "dev": "next dev --port 8000",
     "build": "next build",
     "export": "next export",
     "start": "next start",
