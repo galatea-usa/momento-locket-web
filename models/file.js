@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 import { Model } from "sequelize";
 
 export default (sequelize, DataTypes) => {
@@ -12,26 +12,30 @@ export default (sequelize, DataTypes) => {
       // define association here
       console.log("models list------------------------------", models);
 
+      console.log(process.env);
+
       File.belongsTo(models.Product, {
         foreignKey: {
-          name: 'productId',
-        }
-      })
+          name: "productId",
+        },
+      });
     }
   }
-  File.init({
-    pathname: DataTypes.STRING,
-    type: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
-    width: DataTypes.INTEGER,
-    height: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'File',
-  });
+  File.init(
+    {
+      pathname: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      productId: DataTypes.INTEGER,
+      width: DataTypes.INTEGER,
+      height: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "File",
+    }
+  );
   return File;
 };
-
 
 // pathname: {
 // type: {
