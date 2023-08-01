@@ -12,8 +12,6 @@ export default (sequelize, DataTypes) => {
       // define association here
       console.log("models list------------------------------", models);
 
-      console.log(process.env);
-
       File.belongsTo(models.Product, {
         foreignKey: {
           name: "productId",
